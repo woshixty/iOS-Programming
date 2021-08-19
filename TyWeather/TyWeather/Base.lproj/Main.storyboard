@@ -56,6 +56,11 @@
                             <constraint firstItem="HSE-et-xGu" firstAttribute="top" secondItem="Rwx-7H-cUp" secondAttribute="bottom" constant="60" id="sPz-DI-lmm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cityLabel" destination="QE9-50-pMY" id="Cku-Ch-dUW"/>
+                        <outlet property="iconImageView" destination="HSE-et-xGu" id="cqa-iD-5p5"/>
+                        <outlet property="tempLabel" destination="Rwx-7H-cUp" id="ET3-fN-dPT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

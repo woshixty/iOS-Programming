@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		4035D94426CAD0C500EE764F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4035D94226CAD0C500EE764F /* Main.storyboard */; };
 		4035D94626CAD0CB00EE764F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4035D94526CAD0CB00EE764F /* Assets.xcassets */; };
 		4035D94926CAD0CB00EE764F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4035D94726CAD0CB00EE764F /* LaunchScreen.storyboard */; };
+		40E8249C26CDFDDB00BDBDE5 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8249B26CDFDDB00BDBDE5 /* Weather.swift */; };
 		86EE59A3E42215212F51E14C /* Pods_TyWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658251899704CA787025280C /* Pods_TyWeather.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		4035D94526CAD0CB00EE764F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4035D94826CAD0CB00EE764F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4035D94A26CAD0CB00EE764F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40E8249B26CDFDDB00BDBDE5 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		658251899704CA787025280C /* Pods_TyWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TyWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ACC37BE60F04FF49D3A3862 /* Pods-TyWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TyWeather.release.xcconfig"; path = "Target Support Files/Pods-TyWeather/Pods-TyWeather.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,7 +50,6 @@
 				0D3D97EA9A65D9F782E8561D /* Pods-TyWeather.debug.xcconfig */,
 				8ACC37BE60F04FF49D3A3862 /* Pods-TyWeather.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -83,13 +84,30 @@
 			children = (
 				4035D93C26CAD0C500EE764F /* AppDelegate.swift */,
 				4035D93E26CAD0C500EE764F /* SceneDelegate.swift */,
-				4035D94026CAD0C500EE764F /* ViewController.swift */,
+				40E8249D26CDFF5F00BDBDE5 /* Model */,
+				40E8249E26CDFFB900BDBDE5 /* Controller */,
 				4035D94226CAD0C500EE764F /* Main.storyboard */,
 				4035D94526CAD0CB00EE764F /* Assets.xcassets */,
 				4035D94726CAD0CB00EE764F /* LaunchScreen.storyboard */,
 				4035D94A26CAD0CB00EE764F /* Info.plist */,
 			);
 			path = TyWeather;
+			sourceTree = "<group>";
+		};
+		40E8249D26CDFF5F00BDBDE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40E8249B26CDFDDB00BDBDE5 /* Weather.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		40E8249E26CDFFB900BDBDE5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4035D94026CAD0C500EE764F /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E8249C26CDFDDB00BDBDE5 /* Weather.swift in Sources */,
 				4035D94126CAD0C500EE764F /* ViewController.swift in Sources */,
 				4035D93D26CAD0C500EE764F /* AppDelegate.swift in Sources */,
 				4035D93F26CAD0C500EE764F /* SceneDelegate.swift in Sources */,
