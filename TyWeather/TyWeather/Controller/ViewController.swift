@@ -13,7 +13,7 @@ import SwiftyJSON
 //delegate--代理/委托
 //protocol--协议
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var tempLabel: UILabel!
     
@@ -34,37 +34,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let lon = locations[0].coordinate.longitude
-        let lat = locations[0].coordinate.latitude
-        AF.request("https://devapi.qweather.com/v7/weather/now?location=\(lon),\(lat)&key=0a14ac4b0af941ba951b938217730547").responseJSON{ response in
-            if let data = response.value{
-                let weatherJSON = JSON(data)
-//                self.tempLabel.text = "\(weatherJSON["now"]["temp"].stringValue)˚"
-//                print(weatherJSON["now"]["temp"])
-//                self.iconImageView.image = UIImage(named: weatherJSON["now", "icon"].stringValue)
-//                print(weatherJSON["refer", "sources", 0])
-                self.weather.temp = "\(weatherJSON["now"]["temp"].stringValue)˚"
-                self.weather.icon = weatherJSON["now", "icon"].stringValue
-                
-                self.tempLabel.text = self.weather.temp
-                self.iconImageView.image = UIImage(named: self.weather.icon)
-            }
-        }
-        AF.request("https://geoapi.qweather.com/v2/city/lookup?location=\(lon),\(lat)&key=0a14ac4b0af941ba951b938217730547").response{
-            reponse in
-            if let data = reponse.value{
-                let cityJSON = JSON(data ?? "")
-                self.weather.city = cityJSON["location", 0, "adm2"].stringValue + " " + cityJSON["location", 0, "name"].stringValue
-                self.cityLabel.text = self.weather.city
-            }
-        }
+    // MARK: - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+//        if segue.identifier == "search" {
+//            let vc = segue.destination as! QueryViewController
+//            vc.city = weather.city
+//        }
+        
+        if let vc = segue.destination as? QueryViewController {
+            vc.city = weather.city
+            vc.delegate = self
+        } 
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("出现了异常！")
-        print(error)
-    }
-
+    
 }
 

@@ -23,7 +23,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40"/>
                                 </state>
                                 <connections>
-                                    <segue destination="TC8-vj-9Nz" kind="presentation" id="ezW-bZ-kU8"/>
+                                    <segue destination="TC8-vj-9Nz" kind="presentation" identifier="search" id="TnB-bI-UUO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20˚" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwx-7H-cUp">
@@ -35,7 +35,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="100" translatesAutoresizingMaskIntoConstraints="NO" id="HSE-et-xGu">
                                 <rect key="frame" x="79" y="357" width="256" height="256"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在获取位置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QE9-50-pMY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在获取位置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QE9-50-pMY" customClass="Quer">
                                 <rect key="frame" x="86.5" y="754" width="241.5" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <nil key="textColor"/>
@@ -66,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="616" y="-579"/>
         </scene>
-        <!--View Controller-->
+        <!--Query View Controller-->
         <scene sceneID="6Xx-Ej-nv9">
             <objects>
-                <viewController id="TC8-vj-9Nz" sceneMemberID="viewController">
+                <viewController id="TC8-vj-9Nz" customClass="QueryViewController" customModule="TyWeather" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C98-7m-vZL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,6 +80,9 @@
                                 <state key="normal" image="chevron.backward" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40"/>
                                 </state>
+                                <connections>
+                                    <action selector="back:" destination="TC8-vj-9Nz" eventType="touchUpInside" id="Zhf-7c-eO9"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dfo-OH-MWi">
                                 <rect key="frame" x="108.5" y="80" width="197" height="36"/>
@@ -98,20 +101,23 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3yd-jq-yzZ">
-                                <rect key="frame" x="83" y="176" width="248" height="90"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="p8c-5v-wxC">
+                                <rect key="frame" x="80" y="176" width="254" height="102"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入城市名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M4g-07-gIO">
-                                        <rect key="frame" x="0.0" y="0.0" width="248" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="254" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tc4-Ys-he7">
-                                        <rect key="frame" x="0.0" y="42" width="248" height="48"/>
+                                        <rect key="frame" x="0.0" y="54" width="254" height="48"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <state key="normal" title="查询天气">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="query:" destination="TC8-vj-9Nz" eventType="touchUpInside" id="5JK-G6-Jz7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -119,16 +125,21 @@
                         <viewLayoutGuide key="safeArea" id="Hxe-gG-4eH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="3yd-jq-yzZ" firstAttribute="centerX" secondItem="C98-7m-vZL" secondAttribute="centerX" id="5nY-Oo-SVY"/>
                             <constraint firstItem="Hxe-gG-4eH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TwD-b1-dOE" secondAttribute="trailing" symbolic="YES" id="8yn-e9-F7i"/>
                             <constraint firstItem="dfo-OH-MWi" firstAttribute="top" secondItem="Hxe-gG-4eH" secondAttribute="top" constant="80" id="9ON-3P-6rL"/>
                             <constraint firstItem="TwD-b1-dOE" firstAttribute="top" secondItem="Hxe-gG-4eH" secondAttribute="top" constant="20" id="Dah-XA-ZoA"/>
-                            <constraint firstItem="3yd-jq-yzZ" firstAttribute="top" secondItem="dfo-OH-MWi" secondAttribute="bottom" constant="60" id="Jsb-dp-uzP"/>
-                            <constraint firstItem="3yd-jq-yzZ" firstAttribute="width" secondItem="C98-7m-vZL" secondAttribute="width" multiplier="0.6" id="Lai-Ue-GXR"/>
+                            <constraint firstItem="p8c-5v-wxC" firstAttribute="leading" secondItem="Hxe-gG-4eH" secondAttribute="leading" constant="80" id="E87-Ws-8Q2"/>
                             <constraint firstItem="dfo-OH-MWi" firstAttribute="centerX" secondItem="C98-7m-vZL" secondAttribute="centerX" id="Mgd-rS-Z39"/>
                             <constraint firstItem="TwD-b1-dOE" firstAttribute="leading" secondItem="Hxe-gG-4eH" secondAttribute="leading" constant="20" id="PUv-PH-m8b"/>
+                            <constraint firstItem="Hxe-gG-4eH" firstAttribute="trailing" secondItem="p8c-5v-wxC" secondAttribute="trailing" constant="80" id="QXg-80-DQn"/>
+                            <constraint firstItem="p8c-5v-wxC" firstAttribute="top" secondItem="dfo-OH-MWi" secondAttribute="bottom" constant="60" id="oE1-Nc-z6s"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="DGy-XL-TEw"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="0Y6-dd-eW1" id="fiN-EY-ZEr"/>
+                        <outlet property="cityTextfield" destination="M4g-07-gIO" id="EWr-eh-D3E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0BO-Yh-892" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
