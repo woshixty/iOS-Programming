@@ -16,8 +16,7 @@ import Foundation
 //}
 
 //结构体，约等于class-不需要init，轻量级class
-struct Todo {
-    var name = ""
+struct Todo : Codable {
+    var name = " "
     var checked = false
-    
 }

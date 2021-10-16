@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jrb-HL-bqL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jrb-HL-bqL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,13 +12,13 @@
         <scene sceneID="IhW-lP-qGN">
             <objects>
                 <tableViewController id="KF4-wN-yaY" customClass="TodosController" customModule="Todos" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kFh-x1-Qbs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kFh-x1-Qbs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="todo" id="XQV-ZE-pel" customClass="TodoCell" customModule="Todos" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XQV-ZE-pel" id="ujG-Ml-Ef8">
                                     <rect key="frame" x="0.0" y="0.0" width="356" height="43.5"/>
@@ -60,11 +61,18 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="任务清单" id="nTd-Vl-4zx">
                         <barButtonItem key="backBarButtonItem" title="取消" id="RfJ-Eo-oet"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dYd-AY-wkh">
-                            <connections>
-                                <segue destination="eBw-5N-yuF" kind="show" identifier="addTodo" id="X0l-VB-Grl"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="dYd-AY-wkh">
+                                <connections>
+                                    <segue destination="eBw-5N-yuF" kind="show" identifier="addTodo" id="X0l-VB-Grl"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="删除" id="47V-6c-Sej">
+                                <connections>
+                                    <action selector="batchDelete:" destination="KF4-wN-yaY" id="6vT-V6-ieV"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdR-k5-pbG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -90,7 +98,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z8l-G5-wRR">
-                                                    <rect key="frame" x="20" y="13" width="374" height="18.5"/>
+                                                    <rect key="frame" x="20" y="12.5" width="374" height="18.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -145,7 +153,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U3T-mY-k1h"/>
+        <segue reference="X0l-VB-Grl"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
