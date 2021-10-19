@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TodosController: UITableViewController {
     
@@ -19,6 +20,8 @@ class TodosController: UITableViewController {
     var todos:[Todo] = []
     
     var row = 0
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     @IBAction func batchDelete(_ sender: Any) {
         //1批量删除数据-model
@@ -51,14 +54,23 @@ class TodosController: UITableViewController {
         //沙河的位置-sendbox
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-        //解码-县创建一个解码器-decode
-        if let data = UserDefaults.standard.data(forKey: "todos") {
-            do {
-                todos = try JSONDecoder().decode([Todo].self, from: data)
-            } catch {
-                print(error)
-            }
+        
+        //从coredata里面读数据
+        do {
+            todos = try context.fetch(Todo.fetchRequest())
+        } catch {
+            print(error)
         }
+        
+        //解码-县创建一个解码器-decode
+//        if let data = UserDefaults.standard.data(forKey: "todos") {
+//            do {
+//                todos = try JSONDecoder().decode([Todo].self, from: data)
+//            } catch {
+//                print(error)
+//            }
+//        }
+        
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -119,7 +131,9 @@ class TodosController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //1-删除数据
+            //1-删除数据-先删coredata里面的数据，再删todos数组里面的数据
+            context.delete(todos[indexPath.row])
+            todos.remove(at: indexPath.row)
             todos.remove(at: row)
             // Delete the row from the data source 2-更新视图
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -191,7 +205,10 @@ extension TodosController:TodoDelegate {
     //2、实现协议里面的方法
     func didAdd(name: String) {
         //添加数据
-        todos.append(Todo(name: name, checked: false))
+        let todo = Todo(context: context)
+        todo.name = name
+        todo.checked = false
+        todos.append(todo)
         //将数据存到本地
         saveData()
         //更新视图
@@ -200,14 +217,17 @@ extension TodosController:TodoDelegate {
     }
     
     func saveData() {
-        //编码固定格式-先创建一个编码器（JSONEncoder）-然后编码（encode）
+//        //编码固定格式-先创建一个编码器（JSONEncoder）-然后编码（encode）
+//        do {
+//            let data = try JSONEncoder().encode(todos)
+//            UserDefaults.standard.set(data, forKey: "todos")
+//        } catch {
+//            print(error)
+//        }
         do {
-            let data = try JSONEncoder().encode(todos)
-            UserDefaults.standard.set(data, forKey: "todos")
+            try context.save()
         } catch {
             print(error)
         }
     }
-    
-    
 }
